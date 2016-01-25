@@ -4,8 +4,8 @@ describe('loopback.rest', function() {
   var MyModel;
   beforeEach(function() {
     var ds = app.dataSource('db', { connector: loopback.Memory });
-    MyModel = ds.createModel('MyModel', {name: String});
-    loopback.autoAttach();
+    MyModel = app.createModel('MyModel', {name: String});
+    app.model(MyModel, { dataSource: 'db' });
   });
 
   it('works out-of-the-box', function(done) {

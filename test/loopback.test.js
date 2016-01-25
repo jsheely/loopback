@@ -53,8 +53,6 @@ describe('loopback', function() {
         'ValidationError',
         'application',
         'arguments',
-        'autoAttach',
-        'autoAttachModel',
         'bodyParser',
         'caller',
         'compress',
@@ -73,7 +71,6 @@ describe('loopback', function() {
         'faviconFile',
         'findModel',
         'getCurrentContext',
-        'getDefaultDataSourceForType',
         'getModel',
         'getModelByType',
         'isBrowser',
@@ -96,7 +93,6 @@ describe('loopback', function() {
         'rest',
         'runInContext',
         'session',
-        'setDefaultDataSourceForType',
         'static',
         'status',
         'template',
@@ -155,32 +151,6 @@ describe('loopback', function() {
     it('should extend from Model by default', function() {
       var m1 = loopback.createModel('m1', {});
       assert(m1.prototype instanceof loopback.Model);
-    });
-  });
-
-  describe('loopback.autoAttach', function() {
-    it('doesn\'t overwrite model with datasource configured', function() {
-      var ds1 = loopback.createDataSource('db1', {
-        connector: loopback.Memory
-      });
-
-      // setup default data sources
-      loopback.setDefaultDataSourceForType('db', ds1);
-
-      var ds2 = loopback.createDataSource('db2', {
-        connector: loopback.Memory
-      });
-
-      var model1 = ds2.createModel('m1', {});
-
-      var model2 = loopback.createModel('m2');
-      model2.autoAttach = 'db';
-
-      // auto attach data sources to models
-      loopback.autoAttach();
-
-      assert(model1.dataSource === ds2);
-      assert(model2.dataSource === ds1);
     });
   });
 
