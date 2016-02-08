@@ -354,7 +354,9 @@ module.exports = function(User) {
    *  callback function. This function should NOT add the token to the user
    *  object, instead simply execute the callback with the token! User saving
    *  and email sending will be handled in the `verify()` method.
-   *
+   * @callback {Function} fn Callback function.
+   * @param {Error} err Error object.
+   * @param {Object} object Contains email, token, uid.
    * @promise
    */
 
